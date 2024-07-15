@@ -160,6 +160,7 @@ export const verifyUser =
       privateInstance
         .get("/api/v1/auth/me")
         .then((data) => {
+          console.log("setting user");
           const { user } = data?.data;
           dispatch(setUser(user));
           if (popup) {
@@ -174,6 +175,7 @@ export const verifyUser =
           }
         })
         .catch(async (err) => {
+          console.log("erasing user");
           dispatch(clearUser());
           dispatch(clearUserPosts());
           if (popup) {

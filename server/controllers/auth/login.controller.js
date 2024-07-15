@@ -17,7 +17,7 @@ import cloudinary from "../../config/cloudinary.js";
 const loginController = {
   async login(req, res, next) {
     const { email, password, isPersistent } = req.body;
-
+    console.log("inside login");
     // validation
     const schema = Joi.object({
       email: Joi.string().email().required(),
@@ -147,7 +147,7 @@ const loginController = {
   async oAuthLoginSuccess(req, res, next) {
     try {
       const { user } = req.user;
-
+      console.log("inside oauth login sucess", user);
       // generate tokens
       const access_token = JwtService.sign({
         _id: user._id,

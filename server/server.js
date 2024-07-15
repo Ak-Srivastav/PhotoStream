@@ -58,13 +58,19 @@ app.use("/api/v1/mail", mailRoutes);
 app.use("/api/v1/collections", collectionsRoutes);
 app.use("/api/v1/savedposts", savedPostsRoutes);
 
-app.get("/", async (req, res) => {
-  res.send("Hello from Server");
-});
+// app.get("/", async (req, res) => {
+//   res.send("Hello from Server");
+// });
 
 // console.log(await redis.llen("blacklist"));
 
 // Error handler
+
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
+});
 app.use(errorHandler);
 
 connectDB(process.env.MONGODB_URL)
