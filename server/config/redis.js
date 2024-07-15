@@ -17,14 +17,18 @@ import { REDIS_HOST, REDIS_PASSWORD, REDIS_PORT, REDIS_USERNAME } from "./index.
 
 import createClient from 'ioredis';
 
-console.log("REDIS:",REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
+console.log("REDIS:", REDIS_HOST, REDIS_PORT, REDIS_PASSWORD)
 
 const redis = new createClient({
   password: REDIS_PASSWORD,
   socket: {
     host: REDIS_HOST,
-    port: REDIS_PORT
+    port: parseInt(process.env.REDIS_PORT)
   }
 });
+
+// const redis = new createClient({
+//   url: "redis://redis-docker-service:6379",  // works from Docker!
+// });
 
 export default redis;
