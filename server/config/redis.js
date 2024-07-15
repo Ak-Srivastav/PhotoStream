@@ -17,6 +17,8 @@ import { REDIS_HOST, REDIS_PASSWORD, REDIS_PORT, REDIS_USERNAME } from "./index.
 
 import createClient from 'ioredis';
 
+console.log("REDIS:",REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
+
 const redis = new createClient({
   password: REDIS_PASSWORD,
   socket: {
